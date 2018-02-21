@@ -16,12 +16,18 @@ next line adds link that user can click to get to the add cheese form
 { <p>No cheeses yet</p>}
 
   <ul>
-      @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
-    {
-      <li>@cheese.Key</li>
-      <li>@cheese.Value</li>
+      @*
+      <!-- replaced next clump
+          @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+        {
+          <li>@cheese.Key</li>
+          <li>@cheese.Value</li>
 
 
-}
-
-  </ul>
+        }-->
+        *@
+      @foreach (Cheese individualCheese in ViewBag.cheeses)
+      {
+          <li>@individualCheese.Name</li>
+          <li>@individualCheese.Description</li>
+      }</ul>

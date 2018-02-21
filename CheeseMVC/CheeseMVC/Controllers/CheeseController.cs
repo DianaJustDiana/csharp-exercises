@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CheeseMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,14 +15,20 @@ namespace CheeseMVC.Controllers
         //static private List<string> Cheeses = new List<string>();
 
         //Cheeses is now a dictionary with key/value corresponding to name/description
-        static private Dictionary<string, string> Cheeses = new Dictionary<string, string>();
+        //no longer using a dictionary. instead, refer to list of objects.
+        //static private Dictionary<string, string> Cheeses = new Dictionary<string, string>();
+
+        //Added using CheeseMVC.Models at top so I can access the Cheese datatype/class
+        //Created new empty list of Cheese objects. Don't forget () at end.
+        //Need keyword 'static' for persistence.
+        static List<Cheese> myListOfCheeses = new List<Cheese>();
 
         // GET: /<controller>/
         public IActionResult Index()
         {
 
             // Cheeses refers to the list called Cheeses above
-            ViewBag.cheeses = Cheeses;
+            ViewBag.cheeses = myListOfCheeses;
             //Cheeses now refers to the dictionary called Cheeses above
             return View();
         }
@@ -43,7 +50,7 @@ namespace CheeseMVC.Controllers
         {
             // add new cheese to my existing cheeses
             //next line looks up the Cheeses dictionary above and adds a new cheese name, description to that dictionary
-            Cheeses.Add(name, description);
+            myListOfCheeses.Add(new Cheese(name, description) );
             //redirect to index so it displays the whole list of cheese
             return Redirect("/Cheese");
         }
