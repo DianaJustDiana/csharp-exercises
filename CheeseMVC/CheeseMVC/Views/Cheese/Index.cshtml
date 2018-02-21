@@ -1,0 +1,27 @@
+﻿@{
+}
+
+<h1>My cheeses</h1>
+
+@*
+<a asp-controller="something" is the equivalent of=" href" but it's dynamically created
+    asp-action leads to the action method within the controller
+
+next line adds link that user can click to get to the add cheese form
+*@
+
+<p><a asp-controller="Cheese" asp-action="Add">Add cheese</a></p>
+
+@if (ViewBag.cheeses.Count.Equals(0))
+{ <p>No cheeses yet</p>}
+
+  <ul>
+      @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+    {
+      <li>@cheese.Key</li>
+      <li>@cheese.Value</li>
+
+
+}
+
+  </ul>
